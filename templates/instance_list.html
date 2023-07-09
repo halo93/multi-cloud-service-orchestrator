@@ -1,0 +1,39 @@
+<div id="instances-content">
+    <div class="panel panel-primary" id="instance_result_panel">
+        <div class="panel-heading">
+            <h4 class="text-muted" id="chosen-region-name">
+                {{ chosen_region if chosen_region and chosen_region != 'all' else 'All Instances' }}
+                {% if chosen_region is defined and chosen_region != 'all' %}
+                    <button class="btn badge badge-success btn-launch-instance" data-toggle="modal"
+                            data-target="#exampleModal">
+                        Launch <i class="fa fa-plus"></i></button>
+                {% endif %}
+            </h4>
+        </div>
+        <div class="panel-body">
+            <ul class="list-group" id="instance_list_group">
+                {% for instance in instance_list %}
+                    <li class="list-group-item list-group-item-action text-left text-wrap text-break instance-item"
+                        instance-id="{{ instance['id'] }}">
+                        <b>{{ instance['id'] }}</b>
+                        {% if instance['state'] == 'running' %}
+                            <span class="badge badge-success">{{ instance['state'] }}</span>
+                        {% endif %}
+                        {% if instance['state'] == 'stopped' %}
+                            <span class="badge badge-danger">{{ instance['state'] }}</span>
+                        {% endif %}
+                        {% if instance['state'] == 'terminated' %}
+                            <span class="badge badge-light">{{ instance['state'] }}</span>
+                        {% endif %}
+                        <div class="btn-group float-right">
+                            <button class="btn badge badge-pill badge-primary btn-view-instance" instance-id="{{ instance['id'] }}"
+                                data-toggle="modal" data-target="#viewInstanceModal-{{ instance['id'] }}">
+                                <i class="fa fa-eye"></i></button>
+                        </div>
+                    </li>
+                    {% include "_view_instance_detail_modal.html" %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>

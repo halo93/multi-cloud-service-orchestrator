@@ -1,0 +1,79 @@
+<div class="modal fade" id="viewInstanceModal-{{ instance.id }}" tabindex="-1" role="dialog"
+     aria-labelledby="viewInstanceModal{{ instance.id }}Label"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewInstanceModal{{ instance.id }}Label">
+                    Instance {{ instance.id }}
+                </h5>&nbsp;
+                {% if instance['state'] == 'running' %}
+                    <span class="badge badge-success">{{ instance['state'] }}</span>
+                {% endif %}
+                {% if instance['state'] == 'stopped' %}
+                    <span class="badge badge-danger">{{ instance['state'] }}</span>
+                {% endif %}
+                {% if instance['state'] == 'terminated' %}
+                    <span class="badge badge-light">{{ instance['state'] }}</span>
+                {% endif %}
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table text-left">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Properties</th>
+                        <th scope="col">Value</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">Instance Name</th>
+                        <td>{{ instance.name }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">AMI</th>
+                        <td>{{ instance.ami }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Public IP Address</th>
+                        <td>{{ instance.public_ip_address if instance.public_ip_address is defined else 'N/A' }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Private IP Address</th>
+                        <td>{{ instance.private_ip_address }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Security Groups</th>
+                        <td>
+                            {% for security_group in instance['security_groups'] %}
+                                {{ security_group['GroupId'] }}
+                                {% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Subnet ID</th>
+                        <td>{{ instance.subnet_id }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">VPC ID</th>
+                        <td>{{ instance.vpc_id }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                {% if instance['state'] == 'running' %}
+                    <button type="button" class="btn btn-danger" id="stop-instance">Stop</button>
+                {% endif %}
+                {% if instance['state'] == 'stopped' %}
+                    <button type="button" class="btn btn-success" id="start-instance">Start</button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

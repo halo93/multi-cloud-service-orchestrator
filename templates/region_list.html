@@ -1,0 +1,15 @@
+<div id="region-content">
+    <div class="panel panel-primary" id="region_result_panel">
+        <div class="panel-heading"><h4 class="text-muted">Region list</h4></div>
+        <div class="panel-body">
+            <div class="list-group" id="region_list_group">
+                {% for region in region_list %}
+                    <a href="#" class="list-group-item list-group-item-action text-left text-wrap text-break region-item"
+                    region-name="{{ region['region_name'] }}" data-toggle="tooltip" data-placement="top" title="https://{{ region['end_point'] }}">
+                        {{ region['region_name'] }} <i class="fa fa-globe"></i>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

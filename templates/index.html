@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Home Page{% endblock %}
+{% block content %}
+    <div class="container text-center mt-3">
+        <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+          <h1 class="display-4 fw-normal">Hello Geeks!</h1>
+          <p class="fs-5 text-muted">We create this tool for you to dominate cloud services from 3 cloud service providers below. Please choose one cloud service provider to use</p>
+        </div>
+      <div class="row">
+        <div class="col">
+          <div class="card bg-light card-active" style="width: 18rem; height: 390px">
+              <img src={{ url_for('static', filename = 'css/images/icons/aws.png') }} class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Amazon Web Services</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="/aws" class="btn btn-primary">Access</a>
+              </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card bg-light" style="width: 18rem; height: 390px">
+              <img src={{ url_for('static', filename = 'css/images/icons/oracle.jpeg') }} class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Oracle Cloud</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <button href="#" class="btn btn-primary" disabled>Coming soon!</button>
+              </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card bg-light" style="width: 18rem; height: 390px">
+              <img src={{ url_for('static', filename = 'css/images/icons/google.png') }}  class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Google Cloud Platform</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <button href="#" class="btn btn-primary" disabled>Coming soon!</button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

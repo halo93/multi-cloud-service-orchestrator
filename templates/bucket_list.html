@@ -1,0 +1,15 @@
+<div id="bucket-list">
+    <div class="panel panel-primary" id="result_panel">
+        <div class="panel-heading"><h4 class="text-muted">Bucket list</h4></div>
+        <div class="panel-body">
+            <div class="list-group" id="bucket_list_group">
+                {% for bucket in bucket_list %}
+                    <a href="#" class="list-group-item list-group-item-action text-left text-wrap text-break bucket-item"
+                    bucket-name="{{ bucket }}">
+                        {{ bucket }} <i class="fa fa-folder"></i>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

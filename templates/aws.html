@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}AWS{% endblock %}
+{% block content %}
+    <div class="container text-center mt-3">
+        <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+          <h1 class="display-4 fw-normal">AWS Control Panel</h1>
+          <p class="fs-5 text-muted">With AWS Control Panel, you can manage S3 buckets and their contents. You can also manage and monitor your EC2 instances</p>
+        </div>
+        <div class="row p-3">
+            <div class="col-md-3 mb-3 pt-2 border border-info rounded" style="max-height: 200px">
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                  <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">S3</a>
+                  <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">EC2</a>
+                  <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Monitor</a>
+                  <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Cloudfront</a>
+                </div>
+            </div>
+            <div class="col-md-8 pt-2 ml-lg-2 border border-info rounded">
+                <div class="tab-content" id="v-pills-tabContent">
+                  <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                      <div class="row">
+                          <div class="col-5">
+                              {% include "bucket_list.html" %}
+                          </div>
+                          <div class="col-7" id="file_list">
+                              {% include "file_list.html" %}
+                          </div>
+                      </div>
+                  </div>
+                  <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                      <div class="row">
+                          <div class="col-5" id="region_list">
+                              {% include "region_list.html" %}
+                          </div>
+                          <div class="col-7" id="instance_list">
+                              {% include "instance_list.html" %}
+                          </div>
+                      </div>
+                  </div>
+                  <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">C</div>
+                  <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">.D..</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src={{ url_for('static', filename = 'aws.js') }}></script>
+{% endblock %}
